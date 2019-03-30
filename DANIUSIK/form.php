@@ -24,12 +24,12 @@ function echo_if_not_empty($param){
         echo "Param is empty";
     } else {
         echo $param;
+        echo "<br>";
     }
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo_if_not_empty( $_POST['cars']);
-    echo "<br>";
     echo_if_not_empty( $_POST['message']);    
 }
 
