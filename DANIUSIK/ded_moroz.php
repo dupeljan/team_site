@@ -2,8 +2,8 @@
 <body>
 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-	<select name="wishes" >
-	  <?php
+	<?php
+
 	  function connect_to_db(){
 	  	$servername = "localhost";
 		$username = "root";
@@ -20,24 +20,26 @@
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		} 
-		echo "Connected successfully";
 		return $conn;
 	  }
 
 	  $conn = connect_to_db();
-	  $sql = "SELECT caption FROM wishes";
-	  $result = $conn->query($sql);
+	  for ($x = 0; $x <= 10; $x++) {	
+			  echo "<select name=\"wishes\" >";
+			  $sql = "SELECT caption FROM wishes";
+			  $result = $conn->query($sql);
 
-	if ($result->num_rows > 0) {
-    	// output data of each row
-    	while($row = $result->fetch_assoc()) {
-    		echo "<option value=\"" . $row['caption'] ."\">" . $row['caption'] . "</option>";
-    	}
-	}
+			if ($result->num_rows > 0) {
+		    	// output data of each row
+		    	while($row = $result->fetch_assoc()) {
+		    		echo "<option value=\"" . $row['caption'] ."\">" . $row['caption'] . "</option>";
+		    	}
+			}
 
-
-	  ?>
-	</select>
+			echo "</select><br>";
+	  }
+	 ?>
+	
 	<br>
 	<textarea name="message" rows="10" cols="30">
 	The cat was playing in the garden.
