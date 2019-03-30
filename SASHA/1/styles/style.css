@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 30px 0;    
+    color: rgb(196, 236, 14);
+    text-shadow: 1px 3px 1px black;
+}
+html {
+    font-size: 10px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color:oldlace; 
+}
+
+body {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 2px solid green;
+  }
+  button {
+    background: #f2f6f8; /* Цвет фона */
+    border: 1px solid #7a7b7e; /* Параметры рамки */
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+   }
