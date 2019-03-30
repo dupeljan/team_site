@@ -4,18 +4,39 @@ h1 {
     padding: 30px 0;    
     color: rgb(196, 236, 14);
     text-shadow: 1px 3px 1px black;
+    font-size: 30px;
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+select {
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+    left: 12%;
+    line-height: 10px;
+    position: relative;
+}
+textarea {
+    width: 300px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    line-height: 10px;
 }
 html {
     font-size: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
-    background-color:oldlace; 
+    background-color:rgba(216, 0, 0, 0.726); 
 }
 
-body {
+form {
     width: 400px;
-    height: 400px;
+    height: 300px;
     margin: 0 auto;
-    background: yellow;
+    background: rgb(226, 241, 156);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,8 +46,8 @@ body {
     border: 2px solid green;
   }
   button {
-    background: #f2f6f8; /* Цвет фона */
-    border: 1px solid #7a7b7e; /* Параметры рамки */
+    background: rgb(10, 153, 74); /* Цвет фона */
+    border: 1px solid oldlace; /* Параметры рамки */
     position: absolute;
     top: 90%;
     left: 50%;
