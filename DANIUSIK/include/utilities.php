@@ -28,6 +28,13 @@
 			// return mysqli_result object
 			return $this->$conn->query($sql);
 		}
+
+		function insert_id(){
+			return $conn->insert_id;
+		}
+		function get(){
+			return $conn;
+		}
 	}
 
 	function create_select($name,$mysqli_result,$id,$key){
@@ -54,6 +61,7 @@
 	function s($p){
     	return "'" . $p . "'";
     }
+    //insert array elem into parentheses
 	function str_parenth($array){
 		$result = "(";
 		for($x = 0; $x < count($array); $x++) {
