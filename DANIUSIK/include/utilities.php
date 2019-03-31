@@ -30,7 +30,9 @@
 		}
 
 		function insert_id(){
-			return $conn->insert_id;
+			$sql = "SELECT LAST_INSERT_ID();";
+			$res = $this->$conn->query($sql);
+			return $res->fetch_array()[0];
 		}
 		function get(){
 			return $conn;
