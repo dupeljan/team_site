@@ -24,7 +24,7 @@
 			
 		}
 
-		function get_query($sql){
+		function query($sql){
 			// return mysqli_result object
 			return $this->$conn->query($sql);
 		}
@@ -43,12 +43,24 @@
 	}
 	
 	function echo_if_not_empty($param){
-	if (empty($param)) {
-        echo "Param is empty";
-    } else {
-        echo $param;
-        echo "<br>";
+		if (empty($param)) {
+        	echo "Param is empty<br>";
+    	} else {
+        	echo $param;
+        	echo "<br>";
+    	}
+	}
+
+	function s($p){
+    	return "'" . $p . "'";
     }
-}
+	function str_parenth($array){
+		$result = "(";
+		for($x = 0; $x < count($array); $x++) {
+    		$result .= s($array[$x]) .",";
+		}
+		$result[-1] = ")";	
+		return $result;
+	}
 
 ?>
