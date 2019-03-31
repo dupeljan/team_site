@@ -6,15 +6,16 @@
 <form action="gift.php" method="post">
 	<?php
 		include 'include/utilities.php';
+		$id = "idwishes";
+		$key = "caption";
 		$conn = new db();
 		
-		$sql = "SELECT caption FROM wishes";
+		$sql = "SELECT " . $id . " , " . $key . " FROM wishes";
 		$result = $conn->get_query($sql);
 		for ($x = 0; $x <= 10; $x++) {	
-			create_select("wishes" . $x,$result,"caption");
+			create_select("wishes" . $x,$result,$id,$key);
 			echo "<br>";
 		}
-
 	 ?>
 	
 	<br>

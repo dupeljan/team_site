@@ -30,12 +30,12 @@
 		}
 	}
 
-	function create_select($name,$mysqli_result,$key){
+	function create_select($name,$mysqli_result,$id,$key){
 		echo "<select name=\"" . $name ."\" >";
 		if ($mysqli_result->num_rows > 0) {
 		   	// output data of each row
 		   	while($row = $mysqli_result->fetch_assoc()) {
-		   		echo "<option value=\"" . $row[$key] ."\">" . $row[$key] . "</option>";
+		   		echo "<option value=\"" . $row[$id] ."\">" . $row[$key] . "</option>";
 		   	}
 		}
 		echo "</select>";
