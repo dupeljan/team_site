@@ -3,7 +3,7 @@
 
 	<h1> 
 	 </h1>
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+<form action="gift.php" method="post">
 	<?php
 		include 'include/utilities.php';
 		$conn = new db();

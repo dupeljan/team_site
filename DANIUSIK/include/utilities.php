@@ -42,5 +42,13 @@
 		$mysqli_result->data_seek(0);
 	}
 	
+	function echo_if_not_empty($param){
+	if (empty($param)) {
+        echo "Param is empty";
+    } else {
+        echo $param;
+        echo "<br>";
+    }
+}
 
 ?>
