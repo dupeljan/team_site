@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>The XMLHttpRequest Object</h2>
+
+<h2>Retrieve data from XML file</h2>
+
+<p><b>name:</b> <span id="name"></span></p>
+<p><b>price:</b> <span id="price"></span></p>
+<p><b>description:</b> <span id="description"></span>
+<p><b>calories:</b> <span id="calories"></span>	
+</p>
+
+<button onclick="loadDoc('note.xml')">Get XML data</button>
+
+<script>
+function loadDoc(url) {
+  var xhttp = new XMLHttpRequest();
+	// Если указано, responseType должен быть пустой строкой или "document"
+	xhttp.responseType = 'document';
+
+	// overrideMimeType() может быть использован, чтобы заставить ответ обрабатываться как XML
+	xhttp.overrideMimeType('text/xml');
+  
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var xml_resp = this.responseXML;
+      document.getElementById('name').innerHTML = xml_resp.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+      document.getElementById('price').innerHTML = xml_resp.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+      document.getElementById('description').innerHTML = xml_resp.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+      document.getElementById('calories').innerHTML = xml_resp.getElementsByTagName("calories")[0].childNodes[0].nodeValue;
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>

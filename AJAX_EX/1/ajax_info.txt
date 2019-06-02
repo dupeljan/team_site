@@ -1,0 +1,2 @@
+text from ajax_info.txt
+<h1>привет мир</h1>

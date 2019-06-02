@@ -1,31 +1,50 @@
 <!DOCTYPE html>
 <html>
+<html>
+
+	<head>
+			<meta charset="utf-8">
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+			<link href="styles/style.css" rel="stylesheet" type="text/css">
+			<title>
+				Пожелания для Деда Мороза
+			</title>
+			
+			
+	</head>
+<header>
+	<div class=site_header>
+	Официальный сайт Дедушки Мороза ФКТиПМ
+	</div>
+</header>	
 <body>
 
-<h1>Я</h1>
+
 <form action="gift.php" method="post">
+	<h1>Я</h1>
 	<input type="hidden" name="example" value="data1">
-	<h4>ФИО</h4>
+	<h2>ФИО</h2>
 	<input name="name" type="text" required><br>
-	<h4>возраст</h4>
+	<h2>Возраст</h2>
 	<input name="age" type="number" required><br>
-	<h4>из города</h4>
+	<h2>Из города</h2>
 	<input name="city" type="text" required><br>
-	
+	<h2>
   	<input type="radio" name="gender" value="male" checked> Мальчик<br>
  	<input type="radio" name="gender" value="female"> Девочка<br>
-	
+	</h2>
 
 	<h1>Желаю Дедушке Морозу</h1>
 
 	<?php include 'include/wishes_select.php';?>
 	<h1>И хочу сказать</h1>
-	<textarea name="message" rows="10" cols="30">С Новым Годом!</textarea>
+	<textarea name="message" rows="1">С Новым Годом!</textarea>
 	<br>
-	<input type="submit">
+	<h1>
+	<input type="submit"  value="Отсолать письмо Дедушке Морозу"/> 
+	</h1>
 </form>
 
-<h4> I receve </h4>
 
 </body>
 </html>

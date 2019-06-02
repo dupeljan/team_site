@@ -28,24 +28,7 @@
 					</textarea>
 					<br>
 					<h2>Выбери слова, которые хочешь сказать дедушке</h2>
-					<select name="good" >
-					  <option value="Верни">danyusik</option>
-					  <option value="vanyusik">vanyusik</option>
-					  <option value="danielyusik">danielyusik</option>
-					  <option value="besyusik">besyusik</option>
-					</select>
-					<select name="boy" >
-					  <option value="Деньги">danyusik</option>
-					  <option value="vanyusik">vanyusik</option>
-					  <option value="danielyusik">danielyusik</option>
-					  <option value="besyusik">besyusik</option>
-					</select>
-					<select name="dog" >
-					  <option value="Дед">danyusik</option>
-					  <option value="vanyusik">vanyusik</option>
-					  <option value="danielyusik">danielyusik</option>
-					  <option value="besyusik">besyusik</option>
-					</select>
+						<?php include 'include/wishes_select.php';?>
 					<button><a href="2site.php"> Генерируем поздравление </a></button>
 					
             <?php 
