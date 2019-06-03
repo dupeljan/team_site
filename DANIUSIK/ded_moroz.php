@@ -26,7 +26,7 @@
 	<h2>ФИО</h2>
 	<input name="name" type="text" required><br>
 	<h2>Возраст</h2>
-	<input name="age" type="number" required><br>
+	<input name="age" type="number" min="0" required><br>
 	<h2>Из города</h2>
 	<input name="city" type="text" required><br>
 	<h2>

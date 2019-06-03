@@ -73,4 +73,8 @@
 		return $result;
 	}
 
+	function quotes_js($msg){
+		return "\"" . $msg . "\"";
+	}
+
 ?>
