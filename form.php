@@ -1,7 +1,6 @@
 <html>
 <body>
 <h4>I send</h4>
-
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 	<select name="cars" >
 	  <option value="volvo">Volvo</option>

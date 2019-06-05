@@ -41,7 +41,7 @@
 	<textarea name="message" rows="1">С Новым Годом!</textarea>
 	<br>
 	<h1>
-	<input type="submit"  value="Отсолать письмо Дедушке Морозу"/> 
+	<input type="submit"  value="Отослать письмо Дедушке Морозу"/> 
 	</h1>
 </form>
 
