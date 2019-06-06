@@ -21,20 +21,20 @@
 
 
 <form action="gift.php" method="post">
-	<h1>Я</h1>
+	<h1>Дорогой Дедушка Мороз!</h1>
 	<input type="hidden" name="example" value="data1">
-	<h2>ФИО</h2>
+	<h2>Меня зовут</h2>
 	<input name="name" type="text" required><br>
-	<h2>Возраст</h2>
+	<h2>Мне уже исполнилось</h2>
 	<input name="age" type="number" min="0" required><br>
-	<h2>Из города</h2>
+	<h2>Я из города</h2>
 	<input name="city" type="text" required><br>
 	<h2>
   	<input type="radio" name="gender" value="male" checked> Мальчик<br>
  	<input type="radio" name="gender" value="female"> Девочка<br>
 	</h2>
 
-	<h1>Желаю Дедушке Морозу</h1>
+	<h1>Желаю тебе, Дедушка Мороз:</h1>
 
 	<?php include 'include/wishes_select.php';?>
 	<h1>И хочу сказать</h1>

@@ -49,10 +49,10 @@
 		/*
 		$lim = 5;
 		$cash = $sum;
-		$answer = "";
+		$gifts = "";
 		for ($i=0; $i < $lim; $i++) { 
 			$gift = most_exp($cash,$result);
-			$answer = $answer  . $gift["name"] .", "; 
+			$gifts = $gifts  . $gift["name"] .", "; 
 			$cash -= (int)$gift["cost"];
 			
 		}
@@ -88,21 +88,55 @@
 			}
 		}
 
-		$answer = "";
+		$gifts = "";
+		$background_path = "";
+		$typing_santa_path = "";
+		$final_pic_path = "";
 		
-		// Prepare answer
+		// Prepare gifts
 		if($sum < -30){
-			$answer = "Ты ужасный ребенок, дьявол во плоти!";
+			$gifts = "Ты ужасный ребенок, дьявол во плоти!";
+			$background_path = "come-at-me-bro-santa.gif";
+			$typing_santa_path = "santa_hit.gif";
+			$final_pic_path = "angry_santa.gif";
 		}elseif ($sum < 0) {
-			$answer = "В прошлом году ты вел себя не очень хорошо.";
+			if ( $_POST['gender'] == "male"){
+				$gifts = "В прошлом году ты вел себя не очень хорошо.";
+			}
+			else{
+				$gifts = "В прошлом году ты вела себя не очень хорошо.";	
+			}
+			$background_path = "hohono.gif";
+			$typing_santa_path = "girl.gif";
+			$final_pic_path = "santa_rap.gif";
 		}elseif($sum < 20){
-			$answer = "В прошлом году ты вел себя неплохо.";
+			if($_POST['gender'] == "male"){
+				$gifts = "В прошлом году ты вел себя неплохо.";
+			}
+			else{
+				$gifts = "В прошлом году ты вела себя неплохо.";	
+			}
+			$background_path = "guitar_ded.gif";
+			$typing_santa_path = "typing_ded.gif";
+			$final_pic_path = "santa_thanks.gif";
 		}elseif ($sum < 50) {
-			$answer = "Ты отличный ребенок! Побольше бы таких деток.";
+			$gifts = "Ты отличный ребенок! Побольше бы таких деток.";
+			$background_path = "crazy_santa.gif";
+			$typing_santa_path = "typing_ded.gif";
+			$final_pic_path = "lovely_santa.gif";
 		}else{
-			$answer = "Ты слишком хорош.. Чувствую подвох. Я конечно ценю доброжелательных детей, но чтобы настолько! Наверное ты негодяй.. но ладно. На этот раз я тебя прощаю, но в следующем семестре я буду за тобой следить!";
+			if ($_POST['gender'] == "male"){
+			$gifts = "Ты слишком хорош.. Чувствую подвох. Я, конечно, ценю доброжелательных детей, но чтобы настолько! Наверное ты негодяй.. но ладно. На этот раз я тебя прощаю, но в следующем семестре я буду за тобой следить!";
+			}
+			else{
+				$gifts = "Ты слишком хороша.. Чувствую подвох. Я, конечно, ценю доброжелательных детей, но чтобы настолько! Наверное ты негодяка.. но ладно. На этот раз я тебя прощаю, но в следующем семестре я буду за тобой следить!";
+			}
+			$background_path = "suspicions1.gif";
+			$typing_santa_path = "suspicion.gif";
+			$final_pic_path = "santa_beard.gif";
 		}
 		
+		$gifts = $gifts . " Вот список твоих подарков: ";
 		//  Insert xoxo randomly in text
 		$xoxo = "Хо-Хо ";
 		$xoxo_count =  rand(3,10);
@@ -114,16 +148,15 @@
 		for ($i=0; $i <  $result_vect->count(); $i++) { 
 			//echo "string";
 			while( $xoxo_vector->find($i) ){
-				$answer = $answer . $xoxo;
+				$gifts = $gifts . $xoxo;
 				$xoxo_vector->remove($xoxo_vector->find($i));
 			}
 
-			$answer = $answer . $result_vect[$i] . ", ";
+			$gifts = $gifts . $result_vect[$i] . ", ";
 			
 		}
 
-		$answer = rtrim($answer,", ");
-		echo quotes_js($answer);
-		
+		$gifts = quotes_js(rtrim($gifts,", "));
+
 	}
 ?>

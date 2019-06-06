@@ -113,6 +113,12 @@ input[type="number"]{
   font-size: 30px;
    background: #f2eecb;
 }
-
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 5px;
+}
 
   

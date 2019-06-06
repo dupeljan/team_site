@@ -1,13 +1,13 @@
 <?php include 'include/insert_kid.php'; ?>
+<?php include 'include/get_gifts.php';?>
 <script src="scripts/typed.js"></script>
 <link href="styles/style.css" rel="stylesheet" type="text/css">
-<body style="background: url(styles/come-at-me-bro-santa.gif);">
+<body style="background: rgb(216, 0, 0) url(styles/<?php echo $background_path;?>);">
 	<form action="ded_moroz.php">
 		<h2>
-			
 			Дед мороз отвечает:
 			<br>
-			<img src="styles/ded3.gif">
+			<img src="styles/<?php echo $typing_santa_path;?>">
 			<br>
 	    	<span class="typed"></span>
 			<script type="text/javascript">
@@ -25,7 +25,7 @@
 				 	return grat[Math.trunc(Math.random()*grat.length)];
 				 }
 
-	            var str =  treat() + " " +  <?php echo "\"" . preg_replace('/[^\p{L}\p{N}\s]/u', '', $_POST['name']) . "\""  ;  ?>  + "! " + gratitude() + "." + <?php include 'include/get_gifts.php';?> + " !!!";
+	            var str =  treat() + " " +  <?php echo "\"" . preg_replace('/[^\p{L}\p{N}\s]/u', '', $_POST['name']) . "\""  ;  ?>  + "! " + gratitude() + ". " + <?php echo $gifts;?> + " !!!" + "C НОВЫМ " + "<?php echo date("Y") + 1; ?>" +" ГОДОМ!!! ";
 				
 
 				var typed = new Typed('.typed',
@@ -85,5 +85,6 @@
 		<h2>	
 
 	    <input type="submit" value="Попробовать снова" />
+	    <img src="styles/<?php echo $final_pic_path;?>" class="center">
 	</form>
 </body>
