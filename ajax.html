@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>The XMLHttpRequest task</h2>
+
+<button type="button" onclick="get_XMLHttpRequest()">Run
+</button>
+
+<h4>Response</h4>
+<div id="response">
+
+</div>
+
+
+<script>
+function get_XMLHttpRequest() {
+  // 1. Создаём новый XMLHttpRequest-объект
+let xttpArray = new Array(7);
+
+xttpArray.fill(new XMLHttpRequest);
+//xttpArray.forEach(function(elem){ elem = new XMLHttpRequest(); alert(elem)});
+
+// 2. Настраиваем его: GET-запрос по URL /article/.../load
+
+xttpArray[0].open('GET', '/');
+
+xttpArray[1].open('GET','/DANIUSIK/2/index.php');
+
+
+xttpArray[2].open('HEAD','DANIUSIK/2/file.tar.gz');
+
+xttpArray[3].open('HEAD','/DANIUSIK/2/image.png');
+
+xttpArray[4].open('POST','/DANIUSIK/2/index.php');
+xttpArray[4].setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+//xttpArray[4].setRequestHeader('Accept-Encoding','UTF-8');
+//xttpArray[4].setRequestHeader('Content-Length','13');
+
+xttpArray[5].open('GET','DANIUSIK/2/file.tar.gz');
+xttpArray[5].setRequestHeader('Range','0-99');
+
+xttpArray[6].open('HEAD','/DANIUSIK/2/index.php');
+
+
+// 3. Отсылаем запрос
+for (var i = 0; i < xttpArray.length; i++) {
+  alert(i);
+  
+  if( i == 4 )
+    xttpArray[i].send('comment=Vania');
+  else
+    xttpArray[i].send();
+
+  xttpArray[i].onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        var table = document.getElementById('result table');
+        var row = table.insertRow(i+1);
+        var num = row.insertCell(0);
+        var head = row.insertCell(1);
+        var body = row.insertCell(2);
+
+        num.innerHTML = i+1;
+        head.innerHTML = elem.getAllResponseHeaders();
+        body.innerHTML = elem.responseText;
+    }
+  }
+}
+/*
+xttpArray.forEach(function(elem,i){
+  alert(i);
+  if( i == 4 )
+    elem.send('comment=Vania');
+  else
+    elem.send();
+
+  elem.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        var table = document.getElementById('result table');
+        var row = table.insertRow(i+1);
+        var num = row.insertCell(0);
+        var head = row.insertCell(1);
+        var body = row.insertCell(2);
+
+        num.innerHTML = i+1;
+        head.innerHTML = elem.getAllResponseHeaders();
+        body.innerHTML = elem.responseText;
+    }
+}
+});
+*/
+
+}
+</script>
+<h4>Result</h4>
+<table id='result table'>
+   <tr>
+    <th>Ex #</th>
+    <th>Head</th>
+    <th>Body</th>
+  </tr>
+</table>
+
+</body>
+</html>
