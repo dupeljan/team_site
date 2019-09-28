@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+<style type="text/css">
+  table.result_table {
+  border: 3px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.result_table td, table.result_table th {
+  border: 1px solid #000000;
+  padding: 5px 4px;
+}
+table.result_table tbody td {
+  font-size: 13px;
+}
+table.result_table thead {
+  background: #CFCFCF;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  border-bottom: 3px solid #000000;
+}
+table.result_table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+table.result_table tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
+}
+table.result_table tfoot td {
+  font-size: 14px;
+}
+</style>
 <h2>The XMLHttpRequest task</h2>
 
 <button type="button" onclick="get_XMLHttpRequest()">Run
@@ -16,86 +52,80 @@
 <script>
 function get_XMLHttpRequest() {
   // 1. Создаём новый XMLHttpRequest-объект
-let xttpArray = new Array(7);
 
-xttpArray.fill(new XMLHttpRequest);
+
 //xttpArray.forEach(function(elem){ elem = new XMLHttpRequest(); alert(elem)});
 
 // 2. Настраиваем его: GET-запрос по URL /article/.../load
+function Request(method,domain,params={},attach= ""){
+  this.method = method;
+  this.domain = domain;
+  this.params = params;
+  this.attach = attach;
+}
+var requestArray = [];
 
-xttpArray[0].open('GET', '/');
+requestArray[0] = new Request('GET', '/');
 
-xttpArray[1].open('GET','/DANIUSIK/2/index.php');
+requestArray[1] = new Request('GET','/DANIUSIK/2/index.php');
 
+requestArray[2] = new Request('HEAD','DANIUSIK/2/file.tar.gz');
 
-xttpArray[2].open('HEAD','DANIUSIK/2/file.tar.gz');
+requestArray[3] = new Request('HEAD','/DANIUSIK/2/image.png');
 
-xttpArray[3].open('HEAD','/DANIUSIK/2/image.png');
+requestArray[4] = new Request('POST','/DANIUSIK/2/index.php',{'Content-Type':'application/x-www-form-urlencoded'},"comment=Vania");
 
-xttpArray[4].open('POST','/DANIUSIK/2/index.php');
-xttpArray[4].setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 //xttpArray[4].setRequestHeader('Accept-Encoding','UTF-8');
 //xttpArray[4].setRequestHeader('Content-Length','13');
 
-xttpArray[5].open('GET','DANIUSIK/2/file.tar.gz');
-xttpArray[5].setRequestHeader('Range','0-99');
+requestArray[5] = new Request('GET','DANIUSIK/2/file.tar.gz',{'Range':'0-99'});
 
-xttpArray[6].open('HEAD','/DANIUSIK/2/index.php');
+requestArray[6] = new Request('HEAD','/DANIUSIK/2/index.php');
 
 
 // 3. Отсылаем запрос
-for (var i = 0; i < xttpArray.length; i++) {
-  alert(i);
-  
-  if( i == 4 )
-    xttpArray[i].send('comment=Vania');
-  else
-    xttpArray[i].send();
-
-  xttpArray[i].onreadystatechange = function(){
-    if (this.readyState == 4 && this.status == 200) {
-        var table = document.getElementById('result table');
-        var row = table.insertRow(i+1);
-        var num = row.insertCell(0);
-        var head = row.insertCell(1);
-        var body = row.insertCell(2);
-
-        num.innerHTML = i+1;
-        head.innerHTML = elem.getAllResponseHeaders();
-        body.innerHTML = elem.responseText;
+var request = new XMLHttpRequest();
+(function loop(i, length) {
+    if (i>= length) {
+        return;
     }
-  }
-}
-/*
-xttpArray.forEach(function(elem,i){
-  alert(i);
-  if( i == 4 )
-    elem.send('comment=Vania');
-  else
-    elem.send();
+    let cur_req = requestArray[i];
 
-  elem.onreadystatechange = function(){
-    if (this.readyState == 4 && this.status == 200) {
-        var table = document.getElementById('result table');
-        var row = table.insertRow(i+1);
-        var num = row.insertCell(0);
-        var head = row.insertCell(1);
-        var body = row.insertCell(2);
-
-        num.innerHTML = i+1;
-        head.innerHTML = elem.getAllResponseHeaders();
-        body.innerHTML = elem.responseText;
+    request.open(cur_req.method, cur_req.domain);
+    
+    for(var key in cur_req.params) {
+        request.setRequestHeader(key,cur_req.params[key]);
     }
-}
-});
-*/
+    request.onreadystatechange = function() {
+        if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+          var table = document.getElementById('result_table');
+          var row = table.insertRow(i+1);
+          var num = row.insertCell(0);
+          var req = row.insertCell(1);
+          var head = row.insertCell(2);
+          var body = row.insertCell(3);
+
+          num.innerHTML = i+1;
+          req.innerHTML = JSON.stringify(requestArray[i]);
+          head.innerHTML = this.getAllResponseHeaders();
+          body.innerHTML = this.responseText;
+
+          loop(i + 1, length);
+        }
+    }
+    request.send(cur_req.attach);
+})(0, requestArray.length);
 
 }
+
+
+
 </script>
 <h4>Result</h4>
-<table id='result table'>
+<table id='result_table', class="result_table">
    <tr>
     <th>Ex #</th>
+    <th>Request</th>
     <th>Head</th>
     <th>Body</th>
   </tr>
