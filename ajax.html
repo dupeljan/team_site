@@ -37,11 +37,14 @@ table.result_table tfoot {
 table.result_table tfoot td {
   font-size: 14px;
 }
-</style>
+</style>adios[1].checked
 <h2>The XMLHttpRequest task</h2>
 
 <button type="button" onclick="get_XMLHttpRequest()">Run
 </button>
+
+<input type="radio" name="request_type" value="sync">sync
+<input type="radio" name="request_type" value="async", checked="checked">async
 
 <h4>Response</h4>
 <div id="response">
@@ -54,9 +57,8 @@ function get_XMLHttpRequest() {
   // 1. Создаём новый XMLHttpRequest-объект
 
 
-//xttpArray.forEach(function(elem){ elem = new XMLHttpRequest(); alert(elem)});
-
 // 2. Настраиваем его: GET-запрос по URL /article/.../load
+// Запись типа Request
 function Request(method,domain,params={},attach= ""){
   this.method = method;
   this.domain = domain;
@@ -78,47 +80,88 @@ requestArray[4] = new Request('POST','/DANIUSIK/2/index.php',{'Content-Type':'ap
 //xttpArray[4].setRequestHeader('Accept-Encoding','UTF-8');
 //xttpArray[4].setRequestHeader('Content-Length','13');
 
-requestArray[5] = new Request('GET','DANIUSIK/2/file.tar.gz',{'Range':'0-99'});
+requestArray[5] = new Request('GET','DANIUSIK/2/file.tar.gz',{'Range':'bytes=0-99'});
 
 requestArray[6] = new Request('HEAD','/DANIUSIK/2/index.php');
 
 
+var radios = document.getElementsByName('request_type');
 // 3. Отсылаем запрос
 var request = new XMLHttpRequest();
-(function loop(i, length) {
-    if (i>= length) {
-        return;
-    }
-    let cur_req = requestArray[i];
+//write_result_to_table = function(request,i){}
+if ( radios[1].checked ){ // asynchronous
+  (function loop(i, length) {
+      if (i>= length) {
+          return;
+      }
+      let cur_req = requestArray[i];
 
-    request.open(cur_req.method, cur_req.domain);
-    
-    for(var key in cur_req.params) {
-        request.setRequestHeader(key,cur_req.params[key]);
-    }
-    request.onreadystatechange = function() {
-        if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-          var table = document.getElementById('result_table');
-          var row = table.insertRow(i+1);
-          var num = row.insertCell(0);
-          var req = row.insertCell(1);
-          var head = row.insertCell(2);
-          var body = row.insertCell(3);
+      request.open(cur_req.method, cur_req.domain);
+      
+      for(var key in cur_req.params) {
+          request.setRequestHeader(key,cur_req.params[key]);
+      }
+      request.onreadystatechange = function() {
+          if(this.readyState === XMLHttpRequest.DONE &&( this.status === 200 || this.status === 206) ) {
+            var table = document.getElementById('result_table');
+            var row = table.insertRow(i+1);
+            var num = row.insertCell(0);
+            var req = row.insertCell(1);
+            var head = row.insertCell(2);
+            var body = row.insertCell(3);
 
-          num.innerHTML = i+1;
-          req.innerHTML = JSON.stringify(requestArray[i]);
-          head.innerHTML = this.getAllResponseHeaders();
-          body.innerHTML = this.responseText;
+            num.innerHTML = i+1;
+            req.innerHTML = JSON.stringify(requestArray[i]);
+            head.innerHTML = this.getAllResponseHeaders();
+            body.innerHTML = this.responseText;
 
-          loop(i + 1, length);
-        }
-    }
-    request.send(cur_req.attach);
-})(0, requestArray.length);
+            loop(i + 1, length);
+          }
+        
+
+      }
+      request.send(cur_req.attach);
+  })(0, requestArray.length);
+ }
+
+ else{ // synchonous
+ 	(function loop(i, length){
+ 		if (i>= length) {
+          return;
+      }
+
+      let cur_req = requestArray[i];
+
+      request.open(cur_req.method, cur_req.domain,false);
+
+      for(var key in cur_req.params) {
+          request.setRequestHeader(key,cur_req.params[key]);
+      }
+
+      request.send(cur_req.attach);
+
+      if(request.readyState === XMLHttpRequest.DONE &&( request.status === 200 || request.status === 206) ) {
+            var table = document.getElementById('result_table');
+            var row = table.insertRow(i+1);
+            var num = row.insertCell(0);
+            var req = row.insertCell(1);
+            var head = row.insertCell(2);
+            var body = row.insertCell(3);
+
+            num.innerHTML = i+1;
+            req.innerHTML = JSON.stringify(requestArray[i]);
+            head.innerHTML = request.getAllResponseHeaders();
+            body.innerHTML = request.responseText;
+
+            
+      }
+      loop(i + 1, length);
+ 	})(0,requestArray.length);
+ }
+
+
 
 }
-
-
 
 </script>
 <h4>Result</h4>
