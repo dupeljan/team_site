@@ -35,7 +35,7 @@
 			return $res->fetch_array()[0];
 		}
 		function get(){
-			return $conn;
+			return $this->$conn;
 		}
 	}
 

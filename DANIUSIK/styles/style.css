@@ -45,6 +45,10 @@ select {
 
 }
 
+option {
+  background: red;
+}
+
 textarea {
     resize: none;
     width: 100%;
