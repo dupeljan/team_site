@@ -26,14 +26,15 @@
 	}
 ?>
 <form action="gift.php" method="post">
+	<?php include 'include/ask_to_inp_req.php'; ?>
 	<h1>Дорогой Дедушка Мороз!</h1> 
 	<input type="hidden" name="example" value="data1">
 	<h2>Меня зовут</h2>
-	<input name="name" type="text" value= "<?php get_cookie("name")?>" required><br>
+	<input name="name" type="text" value= "<?php get_cookie("name")?>" ><br>
 	<h2>Мне уже исполнилось</h2>
-	<input name="age" type="number" min="0" value= "<?php get_cookie("age")?>" required><br>
+	<input name="age" type="number" min="0" value= "<?php get_cookie("age")?>" ><br>
 	<h2>Я из города</h2>
-	<input name="city" type="text" value= "<?php get_cookie("city")?>" required><br>
+	<input name="city" type="text" value= "<?php get_cookie("city")?>" ><br>
 	<h2>
   	<input type="radio" name="gender" value="male"  <?php if ( $_COOKIE["gender"] == "male") { echo "checked";}?> > Мальчик<br>
  	<input type="radio" name="gender" value="female" <?php if ( $_COOKIE["gender"] == "female") { echo "checked";}?> > Девочка<br>

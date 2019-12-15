@@ -1,3 +1,4 @@
+<?php include 'include/req_fields.php'; ?>
 <?php include 'include/insert_kid.php'; ?>
 <?php include 'include/get_gifts.php';?>
 <script src="scripts/typed.js"></script>

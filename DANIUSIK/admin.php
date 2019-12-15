@@ -3,10 +3,8 @@ include 'include/auth.php';
 include 'include/utilities.php';
 $conn = new db();
 
-$sql = "select * from 
-	children JOIN children_has_wishes ON
-	idchildren = children_idchildren
-	JOIN wishes ON wishes_idwishes = idwishes;";
+$sql = "select * from children 
+	order by idchildren DESC;";
 $res = $conn->query($sql);	
 
 ?>
@@ -59,12 +57,11 @@ table.result_table tfoot td {
     <th>Город</th>
     <th>Пожелание</th>
     <th>Пол</th>
-    <th>Очки</th>
     <th>Выбор</th>
    </tr>
     <input type="submit" value="удалить выбранные">
    <?php 
-   	$attr = array ("idchildren","name","age","city","wishes_text","sex","score");
+   	$attr = array ("idchildren","name","age","city","wishes_text","sex");
    	while($row = $res->fetch_assoc()) {
 			echo "<tr>";
 		   	foreach ($attr as $elem){
