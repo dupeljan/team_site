@@ -1,0 +1,13 @@
+\babel@toc {russian}{}
+\contentsline {chapter}{Введение}{2}
+\contentsline {chapter}{\numberline {1}Обзор трёхзвенной структуры}{3}
+\contentsline {chapter}{\numberline {2}Актуальность разработки сайтов}{6}
+\contentsline {chapter}{\numberline {3}Структура сайта}{8}
+\contentsline {section}{\numberline {3.1}Front-end сайта}{8}
+\contentsline {section}{\numberline {3.2}Клиент-сервер}{12}
+\contentsline {chapter}{\numberline {4}Структура базы данных}{13}
+\contentsline {chapter}{\numberline {5}Код сайта}{15}
+\contentsline {section}{\numberline {5.1}Главная страница}{15}
+\contentsline {section}{\numberline {5.2}Процедура выдачи подарков}{17}
+\contentsline {chapter}{Заключение}{19}
+\contentsline {chapter}{Список использованных источников}{20}
