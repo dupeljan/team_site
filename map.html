@@ -67,17 +67,20 @@
 				
 				let xhr = new XMLHttpRequest();
 				
-				
-				xhr.onload = function() {
+				xhr.onreadystatechange = function () {
+                        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            alert(xhr.responseText);
+                        }
+				/*xhr.onload = function() {
 								  if (xhr.status != 200) { // HTTP error?
 									// handle error
 									alert( 'Error: ' + xhr.status);
 									return;
 								  }
-
+                                   
 								  alert(xhr.responce)
 								};
-								
+				*/				
 						
                 function latLngPop(e) {
                     lat_lng_popup_cadfc460ba7e49b5a6a724abeb27eef7
