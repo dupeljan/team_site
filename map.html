@@ -82,8 +82,7 @@
                 function latLngPop(e) {
                     lat_lng_popup_cadfc460ba7e49b5a6a724abeb27eef7
                         .setLatLng(e.latlng)
-                        .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
-                                    "<br>Longitude: " + e.latlng.lng.toFixed(4))
+                        .setContent("Computing...")
                         .openOn(map_b7200fd8acf1481785eff852f8879561);
 						let xhr = new XMLHttpRequest();
 
@@ -98,10 +97,13 @@
 						xhr.send(json);
 						xhr.onreadystatechange = function () {
                                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                                    alert(xhr.response);
+                                    lat_lng_popup_cadfc460ba7e49b5a6a724abeb27eef7.
+                                    setContent("Latitude: " + e.latlng.lat.toFixed(4) +
+                                                "<br>Longitude: " + e.latlng.lng.toFixed(4) +
+                                                "<br>Score: " + xhr.response);
                                     return;
                                 }
-                            alert("ERROR")
+                            
                 }
 						
                     }
