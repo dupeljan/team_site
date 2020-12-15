@@ -67,12 +67,7 @@
 				
 				let xhr = new XMLHttpRequest();
 				
-				xhr.onreadystatechange = function () {
-                    alert("aaaaa")
-                        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            alert(xhr.responseText);
-                        }
-                }
+				
 				/*xhr.onload = function() {
 								  if (xhr.status != 200) { // HTTP error?
 									// handle error
@@ -101,7 +96,12 @@
 						xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
 						xhr.send(json);
-						
+						xhr.onreadystatechange = function () {
+                            alert("aaaaa")
+                                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                    alert(xhr.response);
+                        }
+                }
 						
                     }
                 map_b7200fd8acf1481785eff852f8879561.on('click', latLngPop);
