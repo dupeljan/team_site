@@ -68,6 +68,7 @@
 				let xhr = new XMLHttpRequest();
 				
 				xhr.onreadystatechange = function () {
+                    alert("aaaaa")
                         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                             alert(xhr.responseText);
                         }
