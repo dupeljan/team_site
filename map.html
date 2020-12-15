@@ -97,10 +97,11 @@
 
 						xhr.send(json);
 						xhr.onreadystatechange = function () {
-                            alert("aaaaa")
                                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                     alert(xhr.response);
-                        }
+                                    return;
+                                }
+                            alert("ERROR")
                 }
 						
                     }
